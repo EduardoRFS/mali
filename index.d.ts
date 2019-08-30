@@ -56,7 +56,7 @@ type GrpcCall<R = any, W = any> =
 type UseCallback<T extends IsServiceFile<T>, V extends Method> = (
   ctx: Mali.Context<T, GetRequest<V>, GetResponse<V>>,
   next: () => Promise<any>
-) => void;
+) => void | Promise<void>;
 type UseObject<T extends IsServiceFile<T>> = {
   [K in keyof Get<T>["methods"]]?: UseCallback<
     T,
