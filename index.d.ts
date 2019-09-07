@@ -115,6 +115,9 @@ declare class Mali<T extends IsServiceFile<T> = any> extends EventEmitter {
 }
 
 declare namespace Mali {
+  type Methods<T extends IsServiceFile<T>> = {
+    [K in keyof Get<T>['methods']]: UseCallback<T, IsMethod<Get<T>['methods'][K]>>;
+  };
   interface Context<App extends IsServiceFile<App> = any, Req = any, Res = any> {
     name: string;
     fullName: string;
